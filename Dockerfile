@@ -10,9 +10,6 @@ ENV MEDIAINFO_VERSION='0.7.93'
 #Add Repo
 RUN apk add --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing
 
-#Do Update
-RUN apk update
-
 # InstalL s6 overlay
 RUN wget https://github.com/just-containers/s6-overlay/releases/download/v1.21.4.0/s6-overlay-amd64.tar.gz -O s6-overlay.tar.gz && \
     tar xfv s6-overlay.tar.gz -C / && \
@@ -68,7 +65,7 @@ RUN \
   mkdir -p /build/radarr && \
   radarr_tag=$(curl -sX GET "https://api.github.com/repos/Radarr/Radarr/releases" | awk '/tag_name/{print $4;exit}' FS='[""]') && \
   curl -o /build/radarr/radarr.tar.gz -L "https://github.com/galli-leo/Radarr/releases/download/${radarr_tag}/Radarr.develop.${radarr_tag#v}.linux.tar.gz" && \
-   tar ixzf /build/radarr/radarr.tar.gz -C /app/radarr --strip-components=1 && \
+   tar ixzf /build/radarr/radarr.tar.gz -C /app/radarr --strip-components=1
    
    
 	
