@@ -32,18 +32,15 @@ RUN \
 	xz \ 
 	tar \
 	sqlite \
-	zlib-db \
 	nano \
 	htop
 	
 ##Install Mono
-apk add --no-cache mono --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing
+RUN apk add --no-cache mono --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing
 
 	
 # Add volumes
 VOLUME [ "/config" ]
-
-RUN chown media:media /config
 	
 RUN \	
   mkdir -p /build/mediaInfo && \
@@ -69,7 +66,11 @@ RUN \
   radarr_tag=$(curl -sX GET "https://api.github.com/repos/Radarr/Radarr/releases" | awk '/tag_name/{print $4;exit}' FS='[""]') && \
   curl -o /build/radarr/radarr.tar.gz -L "https://github.com/galli-leo/Radarr/releases/download/${radarr_tag}/Radarr.develop.${radarr_tag#v}.linux.tar.gz" && \
    tar ixzf /build/radarr/radarr.tar.gz -C /app/radarr --strip-components=1
-   
+ 
+#Do Permissions
+RUN addgroup -g 911 abc
+RUN adduser -u 911 -D -G abc abc
+RUN chown -R 911:911 /app/radarr 
    
 	
 #Do Cleanup

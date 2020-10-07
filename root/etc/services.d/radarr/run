@@ -2,4 +2,4 @@
 
 radarr_command="mono --debug /app/radarr/bin/Radarr.exe -nobrowser -data=/config"
 echo ":: Starting Radarr ::"
-exec s6-setuidgid media $radarr_command
+exec s6-setuidgid abc $radarr_command
