@@ -34,8 +34,11 @@ RUN \
 	sqlite \
 	zlib-db \
 	nano \
-	htop \
-	mono
+	htop
+	
+##Install Mono
+apk add --no-cache mono --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing
+
 	
 # Add volumes
 VOLUME [ "/config" ]
