@@ -2,7 +2,7 @@
 # Lightweight Linux Node base
 FROM metaboxcloud/docker.base.mono:latest
 LABEL maintainer="metaBox <contact@metabox.cloud>"
-LABEL build_version=="metaBox - Radarr - v: 1.0"
+LABEL build_version="metaBox - Radarr - v: 1.0"
 
  RUN \
   mkdir -p /app/radarr && \
